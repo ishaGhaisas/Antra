@@ -1,0 +1,27 @@
+  
+  .form-wrapper {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    
+  }
+  
+  input.form-control {
+    height: 45px;
+  }
+  
+  .form-check {
+    display: flex;
+    align-items: center;
+  }
+  
+  .agreement-text {
+    margin-bottom: 1rem;
+  }
+  
+  .highlight {
+    background-color: rgb(74, 74, 223);
+    font-weight: bold;
+    color: white
+  }
+  

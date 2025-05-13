@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "text": "complete to do list hw",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "text": "cook",
+      "completed": true
+    },
+    {
+      "id": "45b6",
+      "text": "walk",
+      "completed": true
+    }
+  ]
+}

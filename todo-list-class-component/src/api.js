@@ -36,3 +36,4 @@ export async function toggleTodo(id, completed) {
 
   return res.json();
 }
+

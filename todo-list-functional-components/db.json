@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": "1",
-      "text": "complete to do list hw",
+      "text": "complete to do list hw edited",
       "completed": true
     },
     {
@@ -11,9 +11,9 @@
       "completed": false
     },
     {
-      "id": "57ed",
-      "text": "New Task",
-      "completed": false
+      "id": "de42",
+      "text": "hi edited",
+      "completed": true
     }
   ]
 }

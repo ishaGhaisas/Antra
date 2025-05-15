@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { FaEdit, FaTrashAlt, FaArrowRight, FaArrowLeft } from "react-icons/fa"; 
+import { useState } from "react";
+import { FaEdit, FaTrashAlt, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { editTodo } from "./api";
 
-const TodoItem = ({ task, onDelete, onToggle, onMove }) => {
+const TodoItem = ({ task, onDelete, onMove }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState(task.text);
 
@@ -9,7 +10,7 @@ const TodoItem = ({ task, onDelete, onToggle, onMove }) => {
     if (isEditing) {
       try {
         const updatedTodo = await editTodo(task.id, newText);
-        task.text = updatedTodo.text; 
+        task.text = updatedTodo.text;
       } catch (error) {
         console.error("Error editing todo:", error);
       }
@@ -19,6 +20,12 @@ const TodoItem = ({ task, onDelete, onToggle, onMove }) => {
 
   return (
     <div className="todo-item">
+      {task.completed && (
+        <button className="move-btn" onClick={() => onMove(task.id, false)}>
+          <FaArrowLeft />
+        </button>
+      )}
+
       {isEditing ? (
         <input
           type="text"
@@ -38,12 +45,15 @@ const TodoItem = ({ task, onDelete, onToggle, onMove }) => {
         <button className="delete-btn" onClick={() => onDelete(task.id)}>
           <FaTrashAlt />
         </button>
-        <button className="move-btn" onClick={() => onMove(task.id, !task.completed)}>
-          {task.completed ? <FaArrowLeft /> : <FaArrowRight />}
-        </button>
       </div>
+
+      {!task.completed && (
+        <button className="move-btn" onClick={() => onMove(task.id, true)}>
+          <FaArrowRight />
+        </button>
+      )}
     </div>
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);

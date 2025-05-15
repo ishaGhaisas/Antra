@@ -7,9 +7,20 @@ button {
   font-size: 14px;
 }
 
-button:hover {
-  background-color: #f0f0f0;
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+.submit-btn{
+  background-color: #000;
+}
+
 
 button svg {
   font-size: 18px;
@@ -18,9 +29,11 @@ button svg {
 }
 
 .todo-list-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px;
 }
 
@@ -40,16 +53,10 @@ button svg {
 
 .new-task-input button {
   padding: 8px 16px;
-  background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
+  background-color: blue;
+  color: white;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.new-task-input button:hover {
-  background-color: #0056b3;
-  color: white;
 }
 
 .task-lists {
@@ -60,31 +67,46 @@ button svg {
 }
 
 .task-section {
-  width: 45%;
+  width: 500px;
+  height: 400px;
   padding: 20px;
-  /* background-color: #fff;  */
-  border-radius: 10px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  background-color: rgb(245, 244, 244); 
+  border-radius: 5px;
 }
 
-h2 {
-  text-align: center;
-  color: #333;
-}
+
 
 .todo-item {
+  background-color: rgb(238, 238, 200);
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 .todo-item span {
   flex-grow: 1;
   margin-right: 10px;
   font-size: 16px;
+  text-align: center;
 }
 
 .button-group {
   display: flex;
   gap: 10px;
+}
+
+.edit-btn {
+  background-color: #007bff; /* Blue */
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+
+.move-btn {
+  background-color: #28a745; /* Green */
+  color: white;
 }

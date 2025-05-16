@@ -1,22 +1,26 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaEdit, FaTrashAlt, FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import { editTodo } from "./api";
+import { useContext } from "react";
+import { TodoContext } from "./context/TodoContext";
+
 
 const TodoItem = ({ task, onDelete, onMove }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState(task.text);
 
+  const { edit } = useContext(TodoContext);
+
   const handleEdit = async () => {
     if (isEditing) {
       try {
-        const updatedTodo = await editTodo(task.id, newText);
-        task.text = updatedTodo.text;
+        await edit(task.id, newText);
       } catch (error) {
         console.error("Error editing todo:", error);
       }
     }
     setIsEditing(!isEditing);
   };
+
 
   return (
     <div className="todo-item">

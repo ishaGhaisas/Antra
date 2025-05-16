@@ -1,48 +1,22 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { getTodos, addTodo, deleteTodo, toggleTodo } from "./api";
+import { useContext, useRef, useState, useMemo } from "react";
 import TodoItem from "./TodoItem";
+import { TodoContext } from "./context/TodoContext";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([]);
+  const { todos, add, toggle, remove } = useContext(TodoContext);
   const [newTask, setNewTask] = useState("");
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    getTodos()
-      .then((data) => setTodos(data))
-      .catch((error) => console.error("Error fetching todos:", error));
-  }, []);
-
   const handleAdd = async () => {
     if (newTask.trim()) {
-        const newTodo = await addTodo(newTask);
-        setTodos((prevTodos) => [...prevTodos, newTodo]);
-        setNewTask("");
-        inputRef.current.focus();
+      await add(newTask);
+      setNewTask("");
+      inputRef.current.focus();
     }
   };
 
-  const handleDelete = useCallback(async (id) => {
-      await deleteTodo(id);
-      setTodos((prevTodos) => prevTodos.filter((task) => task.id !== id));
-  }, []);
-
-  const handleToggle = useCallback(async (id, completed) => {
-      const updatedTask = await toggleTodo(id, completed);
-      setTodos((prevTodos) =>
-        prevTodos.map((task) =>
-          task.id === id ? { ...task, completed: updatedTask.completed } : task
-        )
-      );
-  }, []);
-
-  const pendingTodos = useMemo(() => {
-    return todos.filter((task) => !task.completed);
-  }, [todos]);
-
-  const completedTodos = useMemo(() => {
-    return todos.filter((task) => task.completed);
-  }, [todos]);
+  const pendingTodos = useMemo(() => todos.filter((t) => !t.completed), [todos]);
+  const completedTodos = useMemo(() => todos.filter((t) => t.completed), [todos]);
 
   return (
     <div className="todo-list-container">
@@ -66,8 +40,8 @@ const TodoList = () => {
               <TodoItem
                 key={task.id}
                 task={task}
-                onDelete={handleDelete}
-                onMove={handleToggle}
+                onDelete={remove}
+                onMove={toggle}
               />
             ))
           )}
@@ -82,8 +56,8 @@ const TodoList = () => {
               <TodoItem
                 key={task.id}
                 task={task}
-                onDelete={handleDelete}
-                onMove={handleToggle}
+                onDelete={remove}
+                onMove={toggle}
               />
             ))
           )}

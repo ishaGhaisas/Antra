@@ -1,11 +1,12 @@
 import './App.css'
+import { TodoProvider } from './context/TodoContext'
 import TodoList from './TodoList'
 
 function App() {
   return (
-    <div>
-      <TodoList/>
-    </div>
+    <TodoProvider>
+      <TodoList />
+    </TodoProvider>
   )
 }
 

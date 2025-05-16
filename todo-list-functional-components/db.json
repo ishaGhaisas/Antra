@@ -3,7 +3,7 @@
     {
       "id": "1",
       "text": "complete to do list hw edited",
-      "completed": true
+      "completed": false
     },
     {
       "id": "2",
@@ -13,6 +13,11 @@
     {
       "id": "de42",
       "text": "hi edited",
+      "completed": true
+    },
+    {
+      "id": "e346",
+      "text": "new task edited",
       "completed": true
     }
   ]

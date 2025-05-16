@@ -97,16 +97,16 @@ button svg {
 }
 
 .edit-btn {
-  background-color: #007bff; /* Blue */
+  background-color: #007bff;
   color: white;
 }
 
 .delete-btn {
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545;
   color: white;
 }
 
 .move-btn {
-  background-color: #28a745; /* Green */
+  background-color: #28a745;
   color: white;
 }

@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import React from "react";
 
 const withLogger = (WrappedComponent, componentName) => {
-  return function WithLoggerWrapper(props) {
-    useEffect(() => {
+  return class WithLoggerWrapper extends React.Component {
+    componentDidMount() {
       console.log(`Component mounted: ${componentName}`);
-    }, []);
+    }
 
-    return <WrappedComponent {...props} />;
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
   };
 };
 

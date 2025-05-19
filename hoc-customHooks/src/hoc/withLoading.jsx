@@ -1,15 +1,28 @@
-import { useState, useEffect } from "react";
+import React from "react";
 
-const withLoading = (WrappedComponent, delay = 1000) => {
-  return function WithLoadingWrapper(props) {
-    const [loading, setLoading] = useState(true);
+const withLoading = (WrappedComponent, delay = 2000) => {
+  return class WithLoadingWrapper extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        loading: true,
+      };
+      this.timeoutId = null;
+    }
 
-    useEffect(() => {
-      const timeout = setTimeout(() => setLoading(false), delay);
-      return () => clearTimeout(timeout);
-    }, [delay]);
+    componentDidMount() {
+      this.timeoutId = setTimeout(() => {
+        this.setState({ loading: false });
+      }, delay);
+    }
 
-    return <WrappedComponent {...props} loading={loading} />;
+    componentWillUnmount() {
+      clearTimeout(this.timeoutId);
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} loading={this.state.loading} />;
+    }
   };
 };
 
